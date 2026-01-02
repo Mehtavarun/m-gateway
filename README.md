@@ -37,9 +37,9 @@ gateway/
 1.  **Clone the repositories:**
     ```bash
     # (In your workspace folder)
-    git clone https://github.com/yourname/gateway.git
-    git clone https://github.com/yourname/dashboard.git
-    git clone https://github.com/yourname/clipboard.git
+    git clone https://github.com/yourname/m-gateway.git
+    git clone https://github.com/yourname/m-dashboard.git
+    git clone https://github.com/yourname/m-clipboard.git
     ```
 
 2.  **Start the Platform:**
