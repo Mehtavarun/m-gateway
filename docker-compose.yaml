@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  gateway:
+    image: caddy:latest
+    container_name: gateway
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+    networks:
+      - home_net
+    depends_on:
+      - dashboard
+      - clipboard
+
+  dashboard:
+    build: ../dashboard
+    container_name: dashboard
+    restart: unless-stopped
+    networks:
+      - home_net
+
+  clipboard:
+    build: ../clipboard
+    container_name: clipboard
+    restart: unless-stopped
+    environment:
+      - OTEL_SERVICE_NAME=clipboard
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://collector:4318
+      - NODE_ENV=production
+    networks:
+      - home_net
+
+  collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: collector
+    restart: always
+    volumes:
+      - ./otel-config.yaml:/etc/otelcol-contrib/config.yaml
+      - ./logs:/var/log/apps
+    networks:
+      - home_net
+
+networks:
+  home_net:
+
+volumes:
+  caddy_data:

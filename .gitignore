@@ -1,0 +1,15 @@
+# Caddy generated data (Certificates & Locks)
+caddy_data/
+caddy_config/
+caddy_logs/
+
+# Local Log Storage (Keep the folder, ignore the files)
+logs/*
+!logs/.gitkeep
+
+# Environment variables
+.env
+
+# OS Metadata
+.DS_Store
+Thumbs.db

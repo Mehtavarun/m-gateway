@@ -1,0 +1,21 @@
+{
+    local_certs
+}
+
+# 1. Dashboard
+mehta.local {
+    reverse_proxy dashboard:80
+    tls internal
+}
+
+# 2. Clipboard App
+clipboard.mehta.local {
+    reverse_proxy clipboard:5555
+    tls internal
+}
+
+# 3. Logs (Optional view)
+logs.mehta.local {
+    reverse_proxy collector:4318
+    tls internal
+}
