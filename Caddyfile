@@ -10,6 +10,10 @@ mehta.local {
 
 # 2. Clipboard App
 clipboard.mehta.local {
+    header {
+        Access-Control-Allow-Origin "https://mehta.local"
+        Access-Control-Allow-Methods "GET"
+    }
     reverse_proxy clipboard:5555
     tls internal
 }
